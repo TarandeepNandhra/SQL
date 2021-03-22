@@ -48,4 +48,42 @@ WHERE plate_number LIKE '%H42W%'
 -- Jeremy Bowers	0H42W2
 -- Maxine Whitely	H42W0X
 
--- Completed murder mystery!
+-- Congrats, you found the murderer! 
+-- But wait, there's more... If you think you're up for a challenge, 
+-- try querying the interview transcript of the murderer to find the real villain behind this crime. 
+-- If you feel especially confident in your SQL skills, 
+-- try to complete this final step with no more than 2 queries. 
+
+
+SELECT name, transcript
+FROM person p
+JOIN interview i
+  ON p.id = i.person_id
+WHERE name = 'Jeremy Bowers'
+
+-- name	transcript
+-- Jeremy Bowers	I was hired by a woman with a lot of money. 
+-- I don't know her name but I know she's around 5'5" (65") or 5'7" (67"). 
+-- She has red hair and she drives a Tesla Model S. 
+-- I know that she attended the SQL Symphony Concert 3 times in December 2017.
+
+SELECT name, height, hair_color, car_make, car_model, event_name, date
+FROM person p
+JOIN drivers_license d
+  ON p.license_id = d.id
+JOIN facebook_event_checkin f
+  ON p.id = f.person_id
+WHERE height BETWEEN 65 AND 67
+AND hair_color = 'red'
+AND car_make = 'Tesla'
+AND car_model = 'Model S'
+AND date LIKE '201712__'
+
+-- name	height	hair_color	car_make	car_model	event_name	date
+-- Miranda Priestly	66	red	Tesla	Model S	SQL Symphony Concert	20171206
+-- Miranda Priestly	66	red	Tesla	Model S	SQL Symphony Concert	20171212
+-- Miranda Priestly	66	red	Tesla	Model S	SQL Symphony Concert	20171229
+
+-- Congrats, you found the brains behind the murder! 
+-- Everyone in SQL City hails you as the greatest SQL detective of all time. 
+-- Time to break out the champagne!
