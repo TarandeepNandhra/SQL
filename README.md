@@ -11,3 +11,16 @@
 - One-to-one
 - Many-to-one
 - Many-to-many
+
+# SQLZOO
+- Can do mathematical calculations when selecting:
+```
+SELECT name, area*2, population/area
+```
+- Can use IN to select multiple data types
+```
+SELECT poplation
+  FROM world
+ WHERE name IN ('China', 'Italy', ...)
+```
+
